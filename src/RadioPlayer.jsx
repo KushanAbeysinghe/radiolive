@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import styled from 'styled-components';
-import { createGlobalStyle } from 'styled-components';
+import styled, { createGlobalStyle } from 'styled-components';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
@@ -29,6 +28,14 @@ const PlayerContainer = styled.div`
   background: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+  @media (max-width: 768px) {
+    width: 80%; /* Adjust width for smaller screens */
+  }
+
+  @media (max-width: 480px) {
+    width: 90%; /* Adjust width for smaller screens */
+  }
 `;
 
 const Title = styled.h2`
@@ -36,6 +43,8 @@ const Title = styled.h2`
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 20px;
+  text-align: center; /* Ensure the text is center-aligned */
+  width: 100%; /* Ensure it takes up the full width */
 `;
 
 const Loading = styled.div`
