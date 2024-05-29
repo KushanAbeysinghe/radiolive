@@ -1,18 +1,47 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
+
+const GlobalStyle = createGlobalStyle`
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+  body {
+    font-family: 'Roboto', sans-serif;
+  }
+`;
+
+const BackgroundContainer = styled.div`
+  background: linear-gradient(to right, #1825AA, #1825AA90);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+`;
 
 const PlayerContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin-top: 50px;
+  padding: 35px; /* Increased padding */
+  width: 35%; /* Adjust width as needed */
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+`;
+
+const Title = styled.h2`
+  color: #1825AA;
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 20px;
 `;
 
 const Loading = styled.div`
   margin-top: 20px;
   font-size: 18px;
-  color: #000;
+  color: #333;
 `;
 
 const Button = styled.button`
@@ -20,10 +49,10 @@ const Button = styled.button`
   color: #fff;
   border: none;
   border-radius: 5px;
-  padding: 5px 10px;
+  padding: 10px 20px;
   margin-top: 10px;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
 
   &:hover {
     background-color: #cc0000;
@@ -40,6 +69,12 @@ const VolumeControl = styled.input`
 
 const HiddenAudio = styled.audio`
   display: none;
+`;
+
+const RadioImage = styled.img`
+  margin: 20px 0;
+  width: 200px;
+  height: auto;
 `;
 
 const RadioPlayer = () => {
@@ -117,24 +152,28 @@ const RadioPlayer = () => {
   };
 
   return (
-    <PlayerContainer>
-      <h2>Live Radio Stream</h2>
-      <HiddenAudio ref={audioRef}>
-        <source src="https://altair.streamerr.co/stream/8052" type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </HiddenAudio>
-      <Button onClick={handleLiveButtonClick}>Live</Button>
-      <Button onClick={handleMuteButtonClick}>{isMuted ? 'Unmute' : 'Mute'}</Button>
-      <VolumeControl
-        type="range"
-        min="0"
-        max="1"
-        step="0.01"
-        value={volume}
-        onChange={handleVolumeChange}
-      />
-      {isLoading && <Loading>Connecting...</Loading>}
-    </PlayerContainer>
+    <BackgroundContainer>
+      <GlobalStyle />
+      <PlayerContainer>
+        <Title>H BEAT Live Radio Stream</Title>
+        <RadioImage src="/HBeat.jpg" alt="Radio" />
+        <HiddenAudio ref={audioRef}>
+          <source src="https://altair.streamerr.co/stream/8052" type="audio/mpeg" />
+          Your browser does not support the audio element.
+        </HiddenAudio>
+        <Button onClick={handleLiveButtonClick}>Live</Button>
+        <Button onClick={handleMuteButtonClick}>{isMuted ? 'Unmute' : 'Mute'}</Button>
+        <VolumeControl
+          type="range"
+          min="0"
+          max="1"
+          step="0.01"
+          value={volume}
+          onChange={handleVolumeChange}
+        />
+        {isLoading && <Loading>Connecting...</Loading>}
+      </PlayerContainer>
+    </BackgroundContainer>
   );
 };
 
