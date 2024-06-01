@@ -104,7 +104,7 @@ const RadioPlayer = () => {
 
     const playStream = () => {
       setIsLoading(true);
-      audioElement.src = "https://radio.lotustechnologieslk.net:2020/stream/hirufmgarden"; // Set the source to ensure it plays live
+      audioElement.src = "https://altair.streamerr.co/stream/8052"; // Set the source to ensure it plays live
       audioElement.load(); // Reload the audio element
       audioElement.play().then(() => {
         setIsLoading(false);
@@ -149,7 +149,7 @@ const RadioPlayer = () => {
 
   const handleLiveButtonClick = () => {
     const audioElement = audioRef.current;
-    audioElement.src = "https://radio.lotustechnologieslk.net:2020/stream/hirufmgarden"; // Reset the source to ensure it plays live
+    audioElement.src = "https://altair.streamerr.co/stream/8052"; // Reset the source to ensure it plays live
     audioElement.load(); // Reload the audio element
     audioElement.play().catch(error => {
       console.error('Error attempting to play the live stream:', error);
@@ -176,7 +176,7 @@ const RadioPlayer = () => {
         <Title>H BEAT Live Radio Stream</Title>
         <RadioImage src="/HBeat.jpg" alt="Radio" />
         <HiddenAudio ref={audioRef}>
-          <source src="https://radio.lotustechnologieslk.net:2020/stream/hirufmgarden" type="audio/mpeg" />
+          <source src="https://altair.streamerr.co/stream/8052" type="audio/mpeg" />
           Your browser does not support the audio element.
         </HiddenAudio>
         <Button onClick={handleLiveButtonClick}>Live</Button>
