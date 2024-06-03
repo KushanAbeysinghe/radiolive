@@ -39,9 +39,6 @@ const HomeContainer = styled.div`
   padding: 20px;
 `;
 
-const HeaderWrapper = styled.div`
-  width: 100%;
-`;
 
 const Logo = styled.img`
   max-width: 100px;
