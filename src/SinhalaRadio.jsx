@@ -18,29 +18,34 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 const BackgroundContainer = styled.div`
-  position: relative;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url('${process.env.PUBLIC_URL}/images/your-background-image.jpg') no-repeat center center/cover;
+  background: url('${process.env.PUBLIC_URL}/images/Background.jpg') no-repeat center center/cover;
   padding: 20px;
+  overflow: hidden; /* Hide the scrollbar */
+`;
 
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5); /* Adjust this to control the fading effect */
-    z-index: 1;
+const Logo = styled.img`
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  max-width: 100px;
+  height: auto;
+
+  @media (max-width: 768px) {
+    max-width: 80px;
+  }
+
+  @media (max-width: 480px) {
+    max-width: 60px;
   }
 `;
 
 const Container = styled.div`
-  position: relative;
-  z-index: 2;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -49,9 +54,10 @@ const Container = styled.div`
   padding: 20px;
   box-sizing: border-box;
 
-  @media (max-width: 1164px) {
+  @media (max-width: 1152px) {
     flex-direction: column;
     align-items: center;
+    margin-top: 50px;
   }
 `;
 
@@ -62,7 +68,7 @@ const Sidebar = styled.div`
   justify-content: center;
   padding: 20px;
 
-  @media (max-width: 1164px) {
+  @media (max-width: 1152px) {
     width: 100%;
     order: 2;
   }
@@ -76,7 +82,7 @@ const ContentContainer = styled.div`
   justify-content: center;
   padding: 20px;
 
-  @media (max-width: 1164px) {
+  @media (max-width: 1152px) {
     width: 100%;
     order: 1;
   }
@@ -94,7 +100,7 @@ const PlayerContainer = styled.div`
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
-  @media (max-width: 1164px) {
+  @media (max-width: 1152px) {
     max-width: 600px;
   }
 
@@ -155,6 +161,40 @@ const OfflineMessage = styled.div`
   color: #ff0000;
   font-size: 18px;
   margin-top: 20px;
+`;
+
+const Footer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  text-align: center;
+  color: white;
+  margin-top: auto;
+  padding: 10px 0;
+  background-color: rgba(0, 0, 0, 0.5); /* Optional: Add background color for better visibility */
+
+  img {
+    margin-left: 10px;
+    max-width: 50px;
+    height: auto;
+  }
+
+  @media (max-width: 768px) {
+    font-size: 14px;
+
+    img {
+      max-width: 40px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    font-size: 12px;
+
+    img {
+      max-width: 30px;
+    }
+  }
 `;
 
 const SinhalaRadio = ({ setAuthenticated }) => {
@@ -248,11 +288,13 @@ const SinhalaRadio = ({ setAuthenticated }) => {
     <div>
       <Header setAuthenticated={setAuthenticated} onBack={handleBack} onLogout={handleLogout} />
       <BackgroundContainer>
+        <Logo src={`${process.env.PUBLIC_URL}/images/Hirdaramanilogo.png`} alt="Logo" />
+        <br></br>     <br></br>     <br></br>     <br></br>
         <Container>
           <Sidebar>
             <GlobalStyle />
             <PlayerContainer>
-              <Title>H BEAT Live Radio Stream</Title>
+              <Title>H BEAT Live Radio Stream - Sinhala</Title>
               <RadioImage src="/HBeat.jpg" alt="Radio" />
               <HiddenAudio ref={audioRef}>
                 <source src="https://altair.streamerr.co/stream/8052" type="audio/mpeg" />
@@ -276,6 +318,9 @@ const SinhalaRadio = ({ setAuthenticated }) => {
             <Slideshow />
           </ContentContainer>
         </Container>
+        <Footer>
+          Powered By: PLANET ENTERTAINMENT <img src={`${process.env.PUBLIC_URL}/images/PLANET LOGO 2.jpg`} alt="Planet Entertainment Logo" />
+        </Footer>
       </BackgroundContainer>
     </div>
   );
