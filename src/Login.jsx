@@ -41,7 +41,7 @@ const Login = ({ setAuthenticated }) => {
         <Button onClick={handleLogin}>Login</Button>
       </LoginCard>
       <Footer>
-        Powered By: PLANET ENTERTAINMENT <img src={`${process.env.PUBLIC_URL}/images/PLANET LOGO 2.jpg`} alt="Planet Entertainment Logo" />
+        Powered By: PLANET ENTERTAINMENT  <img src={`${process.env.PUBLIC_URL}/images/PLANET LOGO 2.jpg`} alt="Planet Entertainment Logo" />
       </Footer>
     </LoginContainer>
   );
