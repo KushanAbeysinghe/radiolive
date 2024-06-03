@@ -1,21 +1,85 @@
 import React, { useEffect, useRef, useState } from 'react';
 import styled, { createGlobalStyle } from 'styled-components';
+import './App.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
+import Header from './Header';
+import Slideshow from './Slideshow';
 
 const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
   body {
     font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
 `;
 
 const BackgroundContainer = styled.div`
-  background: linear-gradient(to right, #1825AA, #1825AA90);
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   min-height: 100vh;
+  background: url('${process.env.PUBLIC_URL}/images/your-background-image.jpg') no-repeat center center/cover;
+  padding: 20px;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Adjust this to control the fading effect */
+    z-index: 1;
+  }
+`;
+
+const Container = styled.div`
+  position: relative;
+  z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  box-sizing: border-box;
+
+  @media (max-width: 1164px) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+const Sidebar = styled.div`
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+
+  @media (max-width: 1164px) {
+    width: 100%;
+    order: 2;
+  }
+`;
+
+const ContentContainer = styled.div`
+  flex: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  padding: 20px;
+
+  @media (max-width: 1164px) {
+    width: 100%;
+    order: 1;
+  }
 `;
 
 const PlayerContainer = styled.div`
@@ -23,18 +87,19 @@ const PlayerContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding: 35px; /* Increased padding */
-  width: 35%; /* Adjust width as needed */
+  padding: 20px;
+  width: 100%;
+  max-width: 400px;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 
-  @media (max-width: 768px) {
-    width: 80%; /* Adjust width for smaller screens */
+  @media (max-width: 1164px) {
+    max-width: 600px;
   }
 
   @media (max-width: 480px) {
-    width: 90%; /* Adjust width for smaller screens */
+    max-width: 90%;
   }
 `;
 
@@ -43,8 +108,8 @@ const Title = styled.h2`
   font-size: 24px;
   font-weight: 700;
   margin-bottom: 20px;
-  text-align: center; /* Ensure the text is center-aligned */
-  width: 100%; /* Ensure it takes up the full width */
+  text-align: center;
+  width: 100%;
 `;
 
 const Loading = styled.div`
@@ -82,7 +147,7 @@ const HiddenAudio = styled.audio`
 
 const RadioImage = styled.img`
   margin: 20px 0;
-  width: 200px;
+  width: 150px;
   height: auto;
 `;
 
@@ -92,7 +157,7 @@ const OfflineMessage = styled.div`
   margin-top: 20px;
 `;
 
-const RadioPlayer = () => {
+const SinhalaRadio = ({ setAuthenticated }) => {
   const audioRef = useRef(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isMuted, setIsMuted] = useState(false);
@@ -104,26 +169,26 @@ const RadioPlayer = () => {
 
     const playStream = () => {
       setIsLoading(true);
-      audioElement.src = "https://altair.streamerr.co/stream/8052"; // Set the source to ensure it plays live
-      audioElement.load(); // Reload the audio element
+      audioElement.src = "https://altair.streamerr.co/stream/8052";
+      audioElement.load();
       audioElement.play().then(() => {
         setIsLoading(false);
       }).catch(error => {
         console.error('Error attempting to play the stream:', error);
         setIsLoading(true);
-        setTimeout(playStream, 5000); // Retry every 5 seconds
+        setTimeout(playStream, 5000);
       });
     };
 
     const handleAudioError = () => {
       console.error('Stream error, attempting to reload the stream...');
-      playStream(); // Try to play the stream again
+      playStream();
     };
 
     const handleOnline = () => {
       console.log('Internet connection restored, refreshing the page...');
       setIsOnline(true);
-      window.location.reload(true); // Force a full page reload from the server
+      window.location.reload(true);
     };
 
     const handleOffline = () => {
@@ -131,15 +196,15 @@ const RadioPlayer = () => {
       setIsOnline(false);
     };
 
-    // Attempt to play the stream when the component mounts
     playStream();
 
-    // Add event listeners
     audioElement.addEventListener('error', handleAudioError);
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);
 
-    // Cleanup event listeners on component unmount
+    audioElement.muted = false;
+    setIsMuted(false);
+
     return () => {
       audioElement.removeEventListener('error', handleAudioError);
       window.removeEventListener('online', handleOnline);
@@ -149,8 +214,8 @@ const RadioPlayer = () => {
 
   const handleLiveButtonClick = () => {
     const audioElement = audioRef.current;
-    audioElement.src = "https://altair.streamerr.co/stream/8052"; // Reset the source to ensure it plays live
-    audioElement.load(); // Reload the audio element
+    audioElement.src = "https://altair.streamerr.co/stream/8052";
+    audioElement.load();
     audioElement.play().catch(error => {
       console.error('Error attempting to play the live stream:', error);
     });
@@ -169,31 +234,51 @@ const RadioPlayer = () => {
     setVolume(newVolume);
   };
 
+  const handleBack = () => {
+    const audioElement = audioRef.current;
+    audioElement.muted = true;
+  };
+
+  const handleLogout = () => {
+    const audioElement = audioRef.current;
+    audioElement.muted = true;
+  };
+
   return (
-    <BackgroundContainer>
-      <GlobalStyle />
-      <PlayerContainer>
-        <Title>H BEAT Live Radio Stream</Title>
-        <RadioImage src="/HBeat.jpg" alt="Radio" />
-        <HiddenAudio ref={audioRef}>
-          <source src="https://altair.streamerr.co/stream/8052" type="audio/mpeg" />
-          Your browser does not support the audio element.
-        </HiddenAudio>
-        <Button onClick={handleLiveButtonClick}>Live</Button>
-        <Button onClick={handleMuteButtonClick}>{isMuted ? 'Unmute' : 'Mute'}</Button>
-        <VolumeControl
-          type="range"
-          min="0"
-          max="1"
-          step="0.01"
-          value={volume}
-          onChange={handleVolumeChange}
-        />
-        {isLoading && <Loading>Connecting...</Loading>}
-        {!isOnline && <OfflineMessage>No connection.</OfflineMessage>}
-      </PlayerContainer>
-    </BackgroundContainer>
+    <div>
+      <Header setAuthenticated={setAuthenticated} onBack={handleBack} onLogout={handleLogout} />
+      <BackgroundContainer>
+        <Container>
+          <Sidebar>
+            <GlobalStyle />
+            <PlayerContainer>
+              <Title>H BEAT Live Radio Stream</Title>
+              <RadioImage src="/HBeat.jpg" alt="Radio" />
+              <HiddenAudio ref={audioRef}>
+                <source src="https://altair.streamerr.co/stream/8052" type="audio/mpeg" />
+                Your browser does not support the audio element.
+              </HiddenAudio>
+              <Button onClick={handleLiveButtonClick}>Live</Button>
+              <Button onClick={handleMuteButtonClick}>{isMuted ? 'Unmute' : 'Mute'}</Button>
+              <VolumeControl
+                type="range"
+                min="0"
+                max="1"
+                step="0.01"
+                value={volume}
+                onChange={handleVolumeChange}
+              />
+              {isLoading && <Loading>Connecting...</Loading>}
+              {!isOnline && <OfflineMessage>No connection.</OfflineMessage>}
+            </PlayerContainer>
+          </Sidebar>
+          <ContentContainer>
+            <Slideshow />
+          </ContentContainer>
+        </Container>
+      </BackgroundContainer>
+    </div>
   );
 };
 
-export default RadioPlayer;
+export default SinhalaRadio;
