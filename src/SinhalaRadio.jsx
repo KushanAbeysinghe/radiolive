@@ -41,7 +41,7 @@ const Logo = styled.img`
   }
 
   @media (max-width: 480px) {
-    max-width: 100px;
+    max-width: 120px;
   }
 `;
 
@@ -294,7 +294,7 @@ const SinhalaRadio = ({ setAuthenticated }) => {
           <Sidebar>
             <GlobalStyle />
             <PlayerContainer>
-              <Title>H BEAT Live Radio Stream - Sinhala</Title>
+              <Title>H BEAT - Sinhala</Title>
               <RadioImage src="/HBeat.jpg" alt="Radio" />
               <HiddenAudio ref={audioRef}>
                 <source src="https://altair.streamerr.co/stream/8052" type="audio/mpeg" />
