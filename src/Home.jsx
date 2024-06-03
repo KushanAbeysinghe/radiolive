@@ -42,18 +42,22 @@ const HomeContainer = styled.div`
 
 
 const Logo = styled.img`
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  transform: translateX(-50%);
   max-width: 150px;
   height: auto;
-  margin: 20px 0;
 
   @media (max-width: 768px) {
-    max-width: 80px;
+    max-width: 120px;
   }
 
   @media (max-width: 480px) {
-    max-width: 60px;
+    max-width: 120px;
   }
 `;
+
 
 const Content = styled.div`
   flex: 1;
@@ -75,6 +79,8 @@ const Card = styled.div`
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   padding: 50px;
   text-align: center;
+  position: absolute;
+  top: 330px;
 
   h2 {
     margin-bottom: 20px;
