@@ -30,18 +30,18 @@ const BackgroundContainer = styled.div`
 
 const Logo = styled.img`
   position: absolute;
-  top: 80px;
+  top: 110px;
   left: 50%;
   transform: translateX(-50%);
-  max-width: 100px;
+  max-width: 150px;
   height: auto;
 
   @media (max-width: 768px) {
-    max-width: 80px;
+    max-width: 120px;
   }
 
   @media (max-width: 480px) {
-    max-width: 60px;
+    max-width: 100px;
   }
 `;
 

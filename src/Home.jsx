@@ -83,13 +83,19 @@ const Card = styled.div`
 
 const ButtonGroup = styled.div`
   display: flex;
-  justify-content: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 20px;
+  
   flex-wrap: wrap;
 
   @media (max-width: 600px) {
     flex-direction: column;
     gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 `;
 
@@ -99,6 +105,7 @@ const Button = styled.button`
   font-size: 18px;
   background-color: #1825AA;
   color: #fff;
+  
   border: none;
   border-radius: 5px;
   margin: 10px;
@@ -112,6 +119,7 @@ const Button = styled.button`
     width: 100%;
     height: 50px;
     font-size: 16px;
+    justify-content: center;
   }
 `;
 
