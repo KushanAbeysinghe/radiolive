@@ -9,6 +9,7 @@ const Home = ({ setAuthenticated }) => {
 
   return (
     <div>
+    <div>
       <Header setAuthenticated={setAuthenticated} />
       <HomeContainer>
         <Logo src={`${process.env.PUBLIC_URL}/images/Hirdaramanilogo.png`} alt="Logo" />
@@ -16,16 +17,16 @@ const Home = ({ setAuthenticated }) => {
           <Card>
             <h2>H-Beat Radio Online Stream</h2>
             <ButtonGroup>
-              <Button onClick={() => navigate('/sinhala-radio')}>Sinhala Radio</Button>
-              <Button onClick={() => navigate('/tamil-radio')}>Tamil Radio</Button>
+              <Button onClick={() => navigate('/sinhala-radio')}>Sinhala</Button>
+              <Button onClick={() => navigate('/tamil-radio')}>Tamil</Button>
             </ButtonGroup>
           </Card>
         </Content>
-        <Footer>
-          Powered By: PLANET ENTERTAINMENT<img src={`${process.env.PUBLIC_URL}/images/PLANET LOGO 2.jpg`} alt="Planet Entertainment Logo" />
-        </Footer>
       </HomeContainer>
     </div>
+    <Footer>
+          Powered By: PLANET ENTERTAINMENT<img src={`${process.env.PUBLIC_URL}/images/PLANET LOGO 2.jpg`} alt="Planet Entertainment Logo" />
+        </Footer></div>
   );
 };
 
@@ -35,13 +36,13 @@ const HomeContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   min-height: 95vh;
-  background: url('${process.env.PUBLIC_URL}/images/your-background-image.jpg') no-repeat center center/cover;
+ 
   padding: 20px;
 `;
 
 
 const Logo = styled.img`
-  max-width: 100px;
+  max-width: 150px;
   height: auto;
   margin: 20px 0;
 
@@ -72,7 +73,7 @@ const Card = styled.div`
   background: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 20px;
+  padding: 50px;
   text-align: center;
 
   h2 {
@@ -96,7 +97,7 @@ const Button = styled.button`
   width: 200px;
   height: 60px;
   font-size: 18px;
-  background-color: #6c757d;
+  background-color: #1825AA;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -122,7 +123,7 @@ const Footer = styled.div`
   text-align: center;
   color: white;
   padding: 10px 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Optional: Add background color for better visibility */
+  background-color: #1825AA;
 
   img {
     margin-left: 10px;

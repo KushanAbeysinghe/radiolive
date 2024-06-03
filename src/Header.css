@@ -1,16 +1,39 @@
 .header {
     display: flex;
     justify-content: space-between;
-    padding: 10px;
-    background-color: #f8f9fa;
+    padding: 15px;
+    background-color: #1825AA;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    color: white;
+  }
+  
+
+
+  
+  .header h5 {
+    margin: 12px;
+    font-family: Helvetica;
+  }
+  
+  .button-group {
+    display: flex;
+    gap: 10px; /* Adjust the gap as needed */
+  }
+  
+  .back-button, .logout-button {
+    padding: 8px 10px; /* Reduced padding */
+    font-size: 14px; /* Reduced font size */
+    border-radius: 4px; /* Adjusted border radius */
+    background-color: white;
+    color: #1825AA
+    ;
   }
   
   .back-button {
-    margin-right: auto;
+    margin-right: 5px;
   }
   
   .logout-button {
-    margin-left: auto;
+    margin-left: 5px;
   }
   

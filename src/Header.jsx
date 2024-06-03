@@ -24,10 +24,13 @@ const Header = ({ setAuthenticated, onBack, onLogout }) => {
 
   return (
     <div className="header">
-      {location.pathname !== '/home' && (
-        <button className="btn btn-primary back-button" onClick={handleBack}>Back</button>
-      )}
-      <button className="btn btn-danger logout-button" onClick={handleLogout}>Logout</button>
+      <h5>HIRDARAMANI</h5>
+      <div className="button-group">
+        {location.pathname !== '/home' && (
+          <button className=" back-button" onClick={handleBack}>Back</button>
+        )}
+        <button className="logout-button" onClick={handleLogout}>Logout</button>
+      </div>
     </div>
   );
 };

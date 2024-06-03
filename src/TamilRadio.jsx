@@ -23,14 +23,13 @@ const BackgroundContainer = styled.div`
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url('${process.env.PUBLIC_URL}/images/Background.jpg') no-repeat center center/cover;
   padding: 20px;
   overflow: hidden; /* Hide the scrollbar */
 `;
 
 const Logo = styled.img`
   position: absolute;
-  top: 70px;
+  top: 80px;
   left: 50%;
   transform: translateX(-50%);
   max-width: 100px;
@@ -172,7 +171,7 @@ const Footer = styled.div`
   color: white;
   margin-top: auto;
   padding: 10px 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Optional: Add background color for better visibility */
+  background-color: #1825AA;
 
   img {
     margin-left: 10px;
@@ -318,10 +317,11 @@ const TamilRadio = ({ setAuthenticated }) => {
             <Slideshow />
           </ContentContainer>
         </Container>
-        <Footer>
+        
+      </BackgroundContainer>
+      <Footer>
           Powered By: PLANET ENTERTAINMENT <img src={`${process.env.PUBLIC_URL}/images/PLANET LOGO 2.jpg`} alt="Planet Entertainment Logo" />
         </Footer>
-      </BackgroundContainer>
     </div>
   );
 };

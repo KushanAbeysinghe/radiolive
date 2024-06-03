@@ -18,6 +18,7 @@ const Login = ({ setAuthenticated }) => {
   };
 
   return (
+    <div>
     <LoginContainer>
       <Logo src={`${process.env.PUBLIC_URL}/images/Hirdaramanilogo.png`} alt="Logo" />
       <LoginCard>
@@ -40,10 +41,12 @@ const Login = ({ setAuthenticated }) => {
         </FormGroup>
         <Button onClick={handleLogin}>Login</Button>
       </LoginCard>
-      <Footer>
-        Powered By: PLANET ENTERTAINMENT  <img src={`${process.env.PUBLIC_URL}/images/PLANET LOGO 2.jpg`} alt="Planet Entertainment Logo" />
-      </Footer>
+     
     </LoginContainer>
+     <Footer>
+     Powered By: PLANET ENTERTAINMENT  <img src={`${process.env.PUBLIC_URL}/images/PLANET LOGO 2.jpg`} alt="Planet Entertainment Logo" />
+   </Footer>
+   </div>
   );
 };
 
@@ -58,7 +61,7 @@ const LoginContainer = styled.div`
 `;
 
 const Logo = styled.img`
-  max-width: 100px;
+  max-width: 200px;
   height: auto;
   margin-bottom: 20px;
 
@@ -104,7 +107,7 @@ const Input = styled.input`
 const Button = styled.button`
   width: 100%;
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #1825AA;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -125,7 +128,7 @@ const Footer = styled.div`
   color: white;
   margin-top: auto;
   padding: 10px 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Optional: Add background color for better visibility */
+  background-color: #1825AA; /* Optional: Add background color for better visibility */
 
   img {
     margin-left: 10px;
