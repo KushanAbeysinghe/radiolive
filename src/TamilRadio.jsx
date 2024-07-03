@@ -208,7 +208,7 @@ const TamilRadio = ({ setAuthenticated }) => {
 
     const playStream = () => {
       setIsLoading(true);
-      audioElement.src = "https://altair.streamerr.co/stream/8056";
+      audioElement.src = "https://altair.streamerr.co/stream/8058";
       audioElement.load();
       audioElement.play().then(() => {
         setIsLoading(false);
@@ -253,7 +253,7 @@ const TamilRadio = ({ setAuthenticated }) => {
 
   const handleLiveButtonClick = () => {
     const audioElement = audioRef.current;
-    audioElement.src = "https://altair.streamerr.co/stream/8056";
+    audioElement.src = "https://altair.streamerr.co/stream/8058";
     audioElement.load();
     audioElement.play().catch(error => {
       console.error('Error attempting to play the live stream:', error);
@@ -296,7 +296,7 @@ const TamilRadio = ({ setAuthenticated }) => {
               <Title>H BEAT - Tamil</Title>
               <RadioImage src="/HBeat.jpg" alt="Radio" />
               <HiddenAudio ref={audioRef}>
-                <source src="https://altair.streamerr.co/stream/8056" type="audio/mpeg" />
+                <source src="https://altair.streamerr.co/stream/8058" type="audio/mpeg" />
                 Your browser does not support the audio element.
               </HiddenAudio>
               <Button onClick={handleLiveButtonClick}>Live</Button>
